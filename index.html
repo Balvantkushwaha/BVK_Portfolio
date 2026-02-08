@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Balvant | Portfolio</title>
+</head>
+<body>
+    <!-- Background Video -->
+    <video class="bg-video" autoplay muted loop playsinline>z
+        <source src="./images/backvideo.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#" id="#" class="logo"> <img src="./images/BVKlogo.png" id="#" alt="BVK Logo"></a>
+        <nav class="nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <a href="https://drive.google.com/drive/folders/1h3fNEp93UedbigDkRixKg-hUQ1wG8uQm" download="" class="nav-link mobile-cv">Download Resume</a>
+        </nav>
+       
+        <div class="hamburger-menu" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <div class="typewriter-container">
+                    <h1 class="hello-text">Hello, I'm <span class="typed-text" id="typed-text"></span><span class="cursor">|</span></h1>
+                </div>
+                <h2 class="developer-title">MERN Full Stack Developer</h2>
+                <p class="hero-description">Building scalable, clean, and modern web applications with passion.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary view-projects-btn">View Projects</a>
+                    <a href="https://wa.link/syhzry" class="btn-secondary contact-me-btn">Let's talk</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-header">
+                    <h2 class="section-subtitle">Digital Experiences with Precision</h2>
+                    <h1 class="section-main-title">Balvant kushwaha</h1>
+                </div>
+                <div class="about-content">
+                    <div class="about-left">
+                        <div class="profile-image-wrapper">
+                            <div class="image-container">
+                                <img src="./images/profileImage.jpeg" alt="Jeetendra Sahu" class="profile-img">
+                                <div class="image-overlay"></div>
+                                <div class="image-frame"></div>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" data-count="1">0+</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" data-count="5">0+</div>
+                                <div class="stat-label">Projects</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Dedication</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-right">
+                        <div class="description-box">
+                            <p class="main-description">I'm a <span class="highlight">Full Stack Developer</span> specializing in <span class="tech">MERN stack</span> and <span class="tech">Python</span>. I transform complex problems into elegant, intuitive solutions with clean code and modern design.</p>
+                        </div>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-icon"><i class="fa-solid fa-user"></i></div>
+                                <h3 class="info-title">Who I Am</h3>
+                                <p class="info-text">Passionate developer turning ideas into reality through clean code.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-icon"><i class="fa-solid fa-star"></i></div>
+                                <h3 class="info-title">My Journey</h3>
+                                <p class="info-text">Constantly learning and pushing web development boundaries.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-icon"><i class="fa-solid fa-handshake"></i></div>
+                                <h3 class="info-title">What I Do</h3>
+                                <p class="info-text">Building full-stack apps with focus on user experience.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-icon"><i class="fa-solid fa-heart"></i></div>
+                                <h3 class="info-title">My Passion</h3>
+                                <p class="info-text">Creating digital experiences that make a difference.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="compact-skills" id="skills">
+            <div class="container">
+                <div class="skills-header">
+                    <h2 class="skills-subtitle">Tech Stack</h2>
+                    <h1 class="skills-title">Technologies I Work With</h1>
+                    <p class="skills-description">Tools powering my development workflow</p>
+                </div>
+                <div class="compact-skills-grid">
+                    <div class="skill-card"><div class="skill-icon"><i class="fas fa-database"></i></div><div class="skill-name">MongoDB</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fas fa-server"></i></div><div class="skill-name">Express</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-react"></i></div><div class="skill-name">React</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-node-js"></i></div><div class="skill-name">Node.js</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-js"></i></div><div class="skill-name">JavaScript</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-html5"></i></div><div class="skill-name">HTML5</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-css3-alt"></i></div><div class="skill-name">CSS3</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fas fa-wind"></i></div><div class="skill-name">Tailwind</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-git-alt"></i></div><div class="skill-name">Git</div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fas fa-database"></i></div><div class="skill-name">SQL</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">My Projects</h2>
+                    <p class="section-subtitle">Showcasing innovative solutions with modern technologies.</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://i.pinimg.com/736x/cf/5b/bd/cf5bbdd06970f9c6485463cee092b190.jpg" alt="E-Commerce">
+                            <div class="project-badge">Full Stack</div>
+                            <div class="project-links">
+                                <!-- <a href="#" class="github-link"><i class="fab fa-github"></i> GitHub</a> -->
+                                <a href="https://miowns.com/" class="live-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>E-Commerce Platform</h3>
+                            <p>Complete shopping solution with cart, payments, authentication, and admin dashboard.</p>
+                            <div class="tech-stack"><span>React</span><span>Node.js</span><span>MongoDB</span><span>Express</span></div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://i.pinimg.com/736x/32/5c/c9/325cc9912a56cc0f62a7ad097f651d25.jpg" alt="Task Management">
+                            <div class="project-badge">Real-time</div>
+                            <div class="project-links">
+                                <!-- <a href="https://github.com/jeetendrasahu0000-oss/VercelLive" class="github-link"><i class="fab fa-github"></i> GitHub</a> -->
+                                <a href="https://shopcartjeetendras.onrender.com" class="live-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3> E commerce Website</h3>
+                            <p>A lightweight e-commerce project with product cards, filters, and cart functionality</p>
+                            <div class="tech-stack"><span>React.js</span><span>Express</span><span>Node.js</span><span>Mongo</span></div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://i.pinimg.com/1200x/67/72/f5/6772f52b94804207245e7df5e58a8e6a.jpg" alt="institude">
+                            <div class="project-badge">API Integration</div>
+                            <div class="project-links">
+                                <!-- <a href="#" class="github-link"><i class="fab fa-github"></i> GitHub</a> -->
+                                <a href="https://icoesolution.com/" class="live-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Institude Website Icoess</h3>
+                            <p>IT training institute & software company offering internships.</p>
+                            <div class="tech-stack"><span>Mongo</span><span>React</span><span>Node.js</span><span>Express</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">Let's work together</p>
+                </div>
+                <div class="contact-wrapper">
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="input-group"><input type="text" id="name" required><label for="name">Name</label></div>
+                                <div class="input-group"><input type="email" id="email" required><label for="email">Email</label></div>
+                            </div>
+                            <div class="input-group"><input type="text" id="subject" required><label for="subject">Subject</label></div>
+                            <div class="input-group"><textarea id="message" rows="4" required></textarea><label for="message">Message</label></div>
+                            <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="info-content"><h4>Email</h4><p>balvantkushwaha09@gmail.com</p></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-phone"></i></div>
+                            <div class="info-content"><h4>Phone</h4><p>9098781664</p></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="info-content"><h4>Location</h4><p>India</p></div>
+                        </div>
+                        <div class="social-links-compact">
+                            <a href="https://www.linkedin.com/in/balvant-kushwaha" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Balvantkushwaha" class="social-icon"><i class="fab fa-github"></i></a>
+                            <a href="https://wa.link/gix1ap" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <p>Created by <span class="creator"><i class="fa-solid fa-heart"></i>Balvant Kushwaha</span></p>
+                     <p class="visit">Thank You For Visit My Portfolio</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>
