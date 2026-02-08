@@ -1,480 +1,571 @@
 // Portfolio Website JavaScript
 
-document.addEventListener('DOMContentLoaded', function() {
-    // =============== TYPING EFFECT ===============
-    const typedTextSpan = document.getElementById('typed-text');
-    const textArray = ["Balvant Kushwaha", "a Full Stack Developer", "a Problem Solver",];
-    const typingDelay = 100;
-    const erasingDelay = 50;
-    const newTextDelay = 2000;
-    let textArrayIndex = 0;
-    let charIndex = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  // =============== TYPING EFFECT ===============
+  const typedTextSpan = document.getElementById("typed-text");
+  const textArray = [
+    "Balvant Kushwaha",
+    "a Full Stack Developer",
+    "a Problem Solver",
+  ];
+  const typingDelay = 100;
+  const erasingDelay = 50;
+  const newTextDelay = 2000;
+  let textArrayIndex = 0;
+  let charIndex = 0;
 
-    function type() {
-        if (charIndex < textArray[textArrayIndex].length) {
-            typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-            charIndex++;
-            setTimeout(type, typingDelay);
-        } else {
-            setTimeout(erase, newTextDelay);
-        }
+  function type() {
+    if (charIndex < textArray[textArrayIndex].length) {
+      typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingDelay);
+    } else {
+      setTimeout(erase, newTextDelay);
     }
+  }
 
-    function erase() {
-        if (charIndex > 0) {
-            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(erase, erasingDelay);
-        } else {
-            textArrayIndex = (textArrayIndex + 1) % textArray.length;
-            setTimeout(type, typingDelay + 1100);
-        }
+  function erase() {
+    if (charIndex > 0) {
+      typedTextSpan.textContent = textArray[textArrayIndex].substring(
+        0,
+        charIndex - 1,
+      );
+      charIndex--;
+      setTimeout(erase, erasingDelay);
+    } else {
+      textArrayIndex = (textArrayIndex + 1) % textArray.length;
+      setTimeout(type, typingDelay + 1100);
     }
+  }
 
-    // Start typing effect after page loads
-    setTimeout(type, 1000);
+  // Start typing effect after page loads
+  setTimeout(type, 1000);
 
-    // =============== MOBILE MENU TOGGLE ===============
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.querySelector('.nav');
-    const navLinks = document.querySelectorAll('.nav-link');
+  // =============== MOBILE MENU TOGGLE ===============
+  const hamburger = document.getElementById("hamburger");
+  const nav = document.querySelector(".nav");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        nav.classList.toggle('active');
-        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+  hamburger.addEventListener("click", function () {
+    this.classList.toggle("active");
+    nav.classList.toggle("active");
+    document.body.style.overflow = nav.classList.contains("active")
+      ? "hidden"
+      : "auto";
+  });
+
+  // Close mobile menu when clicking on a link
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      hamburger.classList.remove("active");
+      nav.classList.remove("active");
+      document.body.style.overflow = "auto";
     });
+  });
 
-    // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            nav.classList.remove('active');
-            document.body.style.overflow = 'auto';
+  // =============== SMOOTH SCROLL FOR ANCHOR LINKS ===============
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      if (targetId === "#") return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerHeight = document.querySelector(".header").offsetHeight;
+        const targetPosition =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
         });
+      }
     });
+  });
 
-    // =============== SMOOTH SCROLL FOR ANCHOR LINKS ===============
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+  // =============== HEADER SCROLL EFFECT ===============
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector(".header");
+    if (window.scrollY > 50) {
+      header.style.background = "rgba(10, 0, 20, 0)";
+      header.style.backdropFilter = "blur(20px)";
+      header.style.borderColor = "rgba(55, 21, 226, 0.21)";
+    } else {
+      header.style.background = "rgba(0, 0, 0, 0)";
+      header.style.backdropFilter = "blur(4px)";
+      header.style.borderColor = "rgba(255, 255, 255, 0.163)";
+    }
+  });
 
-    // =============== HEADER SCROLL EFFECT ===============
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 50) {
-            header.style.background = 'rgba(10, 0, 20, 0)';
-            header.style.backdropFilter = 'blur(20px)';
-            header.style.borderColor = 'rgba(55, 21, 226, 0.21)';
-        } else {
-            header.style.background = 'rgba(0, 0, 0, 0)';
-            header.style.backdropFilter = 'blur(4px)';
-            header.style.borderColor = 'rgba(255, 255, 255, 0.163)';
-        }
-    });
+  // =============== ABOUT SECTION NUMBER COUNTER ===============
+  const statNumbers = document.querySelectorAll(".stat-number");
+  let hasAnimated = false;
 
-// =============== ABOUT SECTION NUMBER COUNTER ===============
-const statNumbers = document.querySelectorAll('.stat-number');
-let hasAnimated = false;
+  function animateNumbers() {
+    statNumbers.forEach((stat) => {
+      // Store original content for fallback
+      const originalContent = stat.textContent;
+      const finalValue = parseInt(
+        stat.getAttribute("data-count") ||
+          stat.textContent.replace(/[^0-9]/g, ""),
+      );
+      const isPercentage = originalContent.includes("%");
 
-function animateNumbers() {
-    statNumbers.forEach(stat => {
-        // Store original content for fallback
-        const originalContent = stat.textContent;
-        const finalValue = parseInt(stat.getAttribute('data-count') || stat.textContent.replace(/[^0-9]/g, ''));
-        const isPercentage = originalContent.includes('%');
-        
-        // Reset to 0
+      // Reset to 0
+      if (isPercentage) {
+        stat.textContent = "0%";
+      } else {
+        stat.textContent = "0";
+      }
+
+      let startValue = 0;
+      const duration = 2000; // 2 seconds
+      const startTime = Date.now();
+
+      function updateNumber() {
+        const currentTime = Date.now();
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        // Easing function for smoother animation
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+
         if (isPercentage) {
-            stat.textContent = '0%';
+          const currentValue = Math.floor(easeProgress * 100);
+          stat.textContent = currentValue + "%";
         } else {
-            stat.textContent = '0';
+          const currentValue = Math.floor(easeProgress * finalValue);
+          stat.textContent = currentValue + "+";
         }
-        
-        let startValue = 0;
-        const duration = 2000; // 2 seconds
-        const startTime = Date.now();
-        
-        function updateNumber() {
-            const currentTime = Date.now();
-            const progress = Math.min((currentTime - startTime) / duration, 1);
-            // Easing function for smoother animation
-            const easeProgress = 1 - Math.pow(1 - progress, 3);
-            
-            if (isPercentage) {
-                const currentValue = Math.floor(easeProgress * 100);
-                stat.textContent = currentValue + '%';
-            } else {
-                const currentValue = Math.floor(easeProgress * finalValue);
-                stat.textContent = currentValue + '+';
-            }
-            
-            if (progress < 1) {
-                requestAnimationFrame(updateNumber);
-            } else {
-                // Final value
-                if (isPercentage) {
-                    stat.textContent = '100%';
-                } else {
-                    stat.textContent = finalValue + '+';
-                }
-                
-                // Add animation class for visual feedback
-                stat.classList.add('animated');
-                setTimeout(() => {
-                    stat.classList.remove('animated');
-                }, 500);
-            }
-        }
-        
-        updateNumber();
-    });
-}
 
-// Intersection Observer for about section animation
-const aboutSection = document.getElementById('about');
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+        if (progress < 1) {
+          requestAnimationFrame(updateNumber);
+        } else {
+          // Final value
+          if (isPercentage) {
+            stat.textContent = "100%";
+          } else {
+            stat.textContent = finalValue + "+";
+          }
+
+          // Add animation class for visual feedback
+          stat.classList.add("animated");
+          setTimeout(() => {
+            stat.classList.remove("animated");
+          }, 500);
+        }
+      }
+
+      updateNumber();
+    });
+  }
+
+  // Intersection Observer for about section animation
+  const aboutSection = document.getElementById("about");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting && !hasAnimated) {
-            animateNumbers();
-            hasAnimated = true;
-            console.log('Animation triggered via IntersectionObserver');
+          animateNumbers();
+          hasAnimated = true;
+          console.log("Animation triggered via IntersectionObserver");
         }
-    });
-}, {
-    threshold: 0.2, // Reduced threshold for mobile
-    rootMargin: '0px 0px -100px 0px' // Adjusted for better mobile detection
-});
+      });
+    },
+    {
+      threshold: 0.2, // Reduced threshold for mobile
+      rootMargin: "0px 0px -100px 0px", // Adjusted for better mobile detection
+    },
+  );
 
-// Also add scroll event listener as fallback for older browsers
-let hasAnimatedScroll = false;
-function checkScroll() {
+  // Also add scroll event listener as fallback for older browsers
+  let hasAnimatedScroll = false;
+  function checkScroll() {
     if (hasAnimatedScroll || hasAnimated) return;
-    
-    const aboutSection = document.getElementById('about');
+
+    const aboutSection = document.getElementById("about");
     if (!aboutSection) return;
-    
+
     const sectionRect = aboutSection.getBoundingClientRect();
     const windowHeight = window.innerHeight;
-    
+
     // If section is in viewport (top is less than 80% of viewport height)
     if (sectionRect.top < windowHeight * 0.8 && sectionRect.bottom > 0) {
-        animateNumbers();
-        hasAnimatedScroll = true;
-        hasAnimated = true;
-        console.log('Animation triggered via scroll fallback');
-        window.removeEventListener('scroll', checkScroll);
+      animateNumbers();
+      hasAnimatedScroll = true;
+      hasAnimated = true;
+      console.log("Animation triggered via scroll fallback");
+      window.removeEventListener("scroll", checkScroll);
     }
-}
+  }
 
-// Initialize
-if (aboutSection) {
+  // Initialize
+  if (aboutSection) {
     // Debug info
-    console.log('About section found:', aboutSection);
-    console.log('Stat numbers found:', statNumbers.length);
-    
+    console.log("About section found:", aboutSection);
+    console.log("Stat numbers found:", statNumbers.length);
+
     // Use IntersectionObserver (modern browsers)
     observer.observe(aboutSection);
-    
+
     // Fallback for devices that don't support IntersectionObserver well
-    window.addEventListener('scroll', checkScroll);
-    
+    window.addEventListener("scroll", checkScroll);
+
     // Also check on page load in case section is already visible
     setTimeout(checkScroll, 100);
-    
+
     // Additional mobile touch/scroll detection
-    window.addEventListener('touchmove', checkScroll);
-    
+    window.addEventListener("touchmove", checkScroll);
+
     // Check after 1 second as well for slower loading pages
     setTimeout(() => {
-        if (!hasAnimated) {
-            checkScroll();
-        }
+      if (!hasAnimated) {
+        checkScroll();
+      }
     }, 1000);
-} else {
-    console.error('About section not found!');
-}
+  } else {
+    console.error("About section not found!");
+  }
 
-// Force animation on DOMContentLoaded if section is visible
-document.addEventListener('DOMContentLoaded', function() {
+  // Force animation on DOMContentLoaded if section is visible
+  document.addEventListener("DOMContentLoaded", function () {
     setTimeout(checkScroll, 300);
-});
+  });
 
-// Optional: Add a button to manually trigger animation for testing
-// Remove this in production
-function triggerAnimationManually() {
+  // Optional: Add a button to manually trigger animation for testing
+  // Remove this in production
+  function triggerAnimationManually() {
     if (!hasAnimated) {
-        animateNumbers();
-        hasAnimated = true;
-        console.log('Animation manually triggered');
+      animateNumbers();
+      hasAnimated = true;
+      console.log("Animation manually triggered");
     }
-}
+  }
 
-// For testing purposes - you can call triggerAnimationManually() from console
-window.debugAnimation = triggerAnimationManually;
-    // =============== PROJECT CARD HOVER EFFECTS ===============
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
+  // For testing purposes - you can call triggerAnimationManually() from console
+  window.debugAnimation = triggerAnimationManually;
+  // =============== PROJECT CARD HOVER EFFECTS ===============
+  const projectCards = document.querySelectorAll(".project-card");
+
+  projectCards.forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-10px) scale(1.02)";
     });
 
-    // =============== FORM VALIDATION AND SUBMISSION ===============
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        const inputs = contactForm.querySelectorAll('input, textarea');
-        
-        // Add focus effects
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-            
-            input.addEventListener('blur', function() {
-                if (!this.value.trim()) {
-                    this.parentElement.classList.remove('focused');
-                }
-            });
-            
-            // Add floating label effect on input
-            input.addEventListener('input', function() {
-                if (this.value.trim()) {
-                    this.parentElement.classList.add('has-value');
-                } else {
-                    this.parentElement.classList.remove('has-value');
-                }
-            });
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0) scale(1)";
+    });
+  });
+
+  // =============== FORM VALIDATION AND SUBMISSION ===============
+  const contactForm = document.getElementById("contactForm");
+
+  if (contactForm) {
+    const inputs = contactForm.querySelectorAll("input, textarea");
+
+    // Add focus effects
+    inputs.forEach((input) => {
+      input.addEventListener("focus", function () {
+        this.parentElement.classList.add("focused");
+      });
+
+      input.addEventListener("blur", function () {
+        if (!this.value.trim()) {
+          this.parentElement.classList.remove("focused");
+        }
+      });
+
+      // Add floating label effect on input
+      input.addEventListener("input", function () {
+        if (this.value.trim()) {
+          this.parentElement.classList.add("has-value");
+        } else {
+          this.parentElement.classList.remove("has-value");
+        }
+      });
+    });
+
+    contactForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const submitBtn = this.querySelector(".submit-btn");
+      const originalText = submitBtn.innerHTML;
+
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      // Validation
+      if (!name || !email || !subject || !message) {
+        showNotification("Please fill in all fields", "error");
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        showNotification("Please enter a valid email address", "error");
+        return;
+      }
+
+      // Show loading state
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        console.log("data .....", name, email, subject, message);
+        // API call  actual API intrigreation
+
+        await submitToGoogleSheet({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message,
         });
 
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            // Validation
-            if (!name || !email || !subject || !message) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-            
-            if (!validateEmail(email)) {
-                showNotification('Please enter a valid email address', 'error');
-                return;
-            }
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Simulate API call - Replace with actual API endpoint
-                await simulateFormSubmit({ name, email, subject, message });
-                
-                // Success
-                showNotification('🎉 Message sent successfully! I\'ll get back to you soon.', 'success');
-                contactForm.reset();
-                
-                // Remove has-value class after reset
-                inputs.forEach(input => {
-                    input.parentElement.classList.remove('has-value', 'focused');
-                });
-                
-            } catch (error) {
-                showNotification('😞 Failed to send message. Please try again or contact me directly.', 'error');
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        });
-    }
+        // Success
+        showNotification(
+          "🎉 Message sent successfully! I'll get back to you soon.",
+          "success",
+        );
+        contactForm.reset();
 
-    // =============== NOTIFICATION SYSTEM ===============
-    function showNotification(message, type = 'success') {
-        // Remove existing notifications
-        const existingNotifications = document.querySelectorAll('.notification');
-        existingNotifications.forEach(notification => notification.remove());
-        
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
+        // Remove has-value class after reset
+        inputs.forEach((input) => {
+          input.parentElement.classList.remove("has-value", "focused");
+        });
+      } catch (error) {
+        showNotification(
+          "😞 Failed to send message. Please try again or contact me directly.",
+          "error",
+        );
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  // =============== NOTIFICATION SYSTEM ===============
+  function showNotification(message, type = "success") {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll(".notification");
+    existingNotifications.forEach((notification) => notification.remove());
+
+    const notification = document.createElement("div");
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
             <div class="notification-content">
-                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                <i class="fas ${type === "success" ? "fa-check-circle" : "fa-exclamation-circle"}"></i>
                 <span>${message}</span>
             </div>
             <button class="notification-close"><i class="fas fa-times"></i></button>
         `;
-        
-        document.body.appendChild(notification);
-        
-        // Show notification
-        setTimeout(() => notification.classList.add('show'), 10);
-        
-        // Auto remove after 5 seconds
-        const autoRemove = setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 5000);
-        
-        // Close button
-        const closeBtn = notification.querySelector('.notification-close');
-        closeBtn.addEventListener('click', () => {
-            clearTimeout(autoRemove);
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        });
-    }
 
-    // =============== UTILITY FUNCTIONS ===============
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
+    document.body.appendChild(notification);
 
-    async function simulateFormSubmit(data) {
-        // Simulate network delay
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // 90% chance of success for demo purposes
-                Math.random() > 0.1 ? resolve() : reject(new Error('Network error'));
-            }, 1500);
-        });
-    }
+    // Show notification
+    setTimeout(() => notification.classList.add("show"), 10);
 
-    // =============== SKILLS ANIMATION ===============
-    const skillCards = document.querySelectorAll('.skill-card');
-    
-    skillCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.classList.add('animate-on-scroll');
+    // Auto remove after 5 seconds
+    const autoRemove = setTimeout(() => {
+      notification.classList.remove("show");
+      setTimeout(() => notification.remove(), 300);
+    }, 5000);
+
+    // Close button
+    const closeBtn = notification.querySelector(".notification-close");
+    closeBtn.addEventListener("click", () => {
+      clearTimeout(autoRemove);
+      notification.classList.remove("show");
+      setTimeout(() => notification.remove(), 300);
     });
+  }
 
-    // Observe skills for animation
-    const skillsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, {
-        threshold: 0.2
-    });
+  // =============== UTILITY FUNCTIONS ===============
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
 
-    skillCards.forEach(card => skillsObserver.observe(card));
+  //   async function submitToGoogleSheet(data) {
+  //     console.log("data................//////////////////",data)
 
-    // =============== TOUCH OPTIMIZATION ===============
-    if ('ontouchstart' in window) {
-        document.documentElement.classList.add('touch-device');
-        
-        // Better touch feedback
-        const touchElements = document.querySelectorAll('.btn-primary, .btn-secondary, .skill-card, .project-card, .nav-link');
-        
-        touchElements.forEach(element => {
-            element.addEventListener('touchstart', function() {
-                this.classList.add('touch-active');
-            }, { passive: true });
-            
-            element.addEventListener('touchend', function() {
-                this.classList.remove('touch-active');
-            }, { passive: true });
-        });
+  //     const scriptURL =
+  //       "https://script.google.com/macros/s/AKfycbzVdHfU19FAx3RvjKlGAuYjn_rj1adI1S6YPrvk4WdVfEIxDUg7RIjNF2yt2d_lgL2iQw/exec";
+
+  //     const formData = new FormData();
+  //     formData.append("name", data.name);
+  //     formData.append("email", data.email);
+  //     formData.append("subject", data.subject);
+  //     formData.append("message", data.message);
+  //     console.log("formData...", formData);
+
+  //     const res = await fetch(scriptURL, {
+  //       method: "POST",
+  //       body: data,
+  //     });
+  //     console.log("res....",res);
+
+  //     if (!res.ok) {
+  //       throw new Error("Failed to submit form");
+  //     }
+
+  //     return await res.text();
+  //   }
+
+  async function submitToGoogleSheet(data) {
+    console.log("data received:", data);
+
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbzB3CY6gpNvXwBJY2N4zLxOuIeRdhNHZTWCrQpqnaR69JyhefIJv08tkd2AGi6FOdQp/exec";
+
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("subject", data.subject);
+    formData.append("message", data.message);
+
+    // ✅ Debug
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
     }
 
-    // =============== LAZY LOAD IMAGES ===============
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute('data-src');
-                img.removeAttribute('data-src');
-                imageObserver.unobserve(img);
-            }
-        });
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      body: formData, // ✅ CORRECT
     });
+    console.log("respose ....",res)
 
-    images.forEach(img => imageObserver.observe(img));
-
-    // =============== CURRENT YEAR IN FOOTER ===============
-    const yearSpan = document.querySelector('.current-year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
+    if (!res.ok) {
+      throw new Error("Failed to submit form");
     }
 
-    // =============== BACK TO TOP BUTTON ===============
-    const backToTopBtn = document.createElement('button');
-    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTopBtn.className = 'back-to-top';
-    backToTopBtn.setAttribute('aria-label', 'Back to top');
-    document.body.appendChild(backToTopBtn);
+    return await res.text();
+  }
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
+  const skillCards = document.querySelectorAll(".skill-card");
+
+  skillCards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.1}s`;
+    card.classList.add("animate-on-scroll");
+  });
+
+  // Observe skills for animation
+  const skillsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animated");
         }
+      });
+    },
+    {
+      threshold: 0.2,
+    },
+  );
+
+  skillCards.forEach((card) => skillsObserver.observe(card));
+
+  // =============== TOUCH OPTIMIZATION ===============
+  if ("ontouchstart" in window) {
+    document.documentElement.classList.add("touch-device");
+
+    // Better touch feedback
+    const touchElements = document.querySelectorAll(
+      ".btn-primary, .btn-secondary, .skill-card, .project-card, .nav-link",
+    );
+
+    touchElements.forEach((element) => {
+      element.addEventListener(
+        "touchstart",
+        function () {
+          this.classList.add("touch-active");
+        },
+        { passive: true },
+      );
+
+      element.addEventListener(
+        "touchend",
+        function () {
+          this.classList.remove("touch-active");
+        },
+        { passive: true },
+      );
+    });
+  }
+
+  // =============== LAZY LOAD IMAGES ===============
+  const images = document.querySelectorAll("img[data-src]");
+
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.getAttribute("data-src");
+        img.removeAttribute("data-src");
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+
+  images.forEach((img) => imageObserver.observe(img));
+
+  // =============== CURRENT YEAR IN FOOTER ===============
+  const yearSpan = document.querySelector(".current-year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+
+  // =============== BACK TO TOP BUTTON ===============
+  const backToTopBtn = document.createElement("button");
+  backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+  backToTopBtn.className = "back-to-top";
+  backToTopBtn.setAttribute("aria-label", "Back to top");
+  document.body.appendChild(backToTopBtn);
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+      backToTopBtn.classList.add("visible");
+    } else {
+      backToTopBtn.classList.remove("visible");
+    }
+  });
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+
+  // =============== ACTIVE NAV LINK ON SCROLL ===============
+  const sections = document.querySelectorAll("section[id]");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    const scrollPosition = window.scrollY + 100;
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight
+      ) {
+        current = section.getAttribute("id");
+      }
     });
 
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
     });
-
-    // =============== ACTIVE NAV LINK ON SCROLL ===============
-    const sections = document.querySelectorAll('section[id]');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollPosition = window.scrollY + 100;
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
+  });
 });
 
 // =============== ADDITIONAL CSS FOR JS FEATURES ===============
@@ -653,31 +744,33 @@ const additionalStyles = `
 `;
 
 // Add styles to document
-const styleSheet = document.createElement('style');
+const styleSheet = document.createElement("style");
 styleSheet.textContent = additionalStyles;
 document.head.appendChild(styleSheet);
 
 // Add scroll progress bar
-const progressBar = document.createElement('div');
-progressBar.className = 'scroll-progress';
+const progressBar = document.createElement("div");
+progressBar.className = "scroll-progress";
 document.body.appendChild(progressBar);
 
-window.addEventListener('scroll', () => {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (window.pageYOffset / windowHeight) * 100;
-    progressBar.style.width = scrolled + '%';
+window.addEventListener("scroll", () => {
+  const windowHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+  const scrolled = (window.pageYOffset / windowHeight) * 100;
+  progressBar.style.width = scrolled + "%";
 });
 
 // Prevent scrolling when mobile menu is open
 const originalBodyOverflow = document.body.style.overflow;
 
-window.addEventListener('resize', () => {
-    const nav = document.querySelector('.nav');
-    const hamburger = document.getElementById('hamburger');
-    
-    if (window.innerWidth > 768 && nav.classList.contains('active')) {
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
-        document.body.style.overflow = originalBodyOverflow;
-    }
+window.addEventListener("resize", () => {
+  const nav = document.querySelector(".nav");
+  const hamburger = document.getElementById("hamburger");
+
+  if (window.innerWidth > 768 && nav.classList.contains("active")) {
+    hamburger.classList.remove("active");
+    nav.classList.remove("active");
+    document.body.style.overflow = originalBodyOverflow;
+  }
 });
