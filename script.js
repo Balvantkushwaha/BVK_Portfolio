@@ -387,33 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-  }
-
-  //   async function submitToGoogleSheet(data) {
-  //     console.log("data................//////////////////",data)
-
-  //     const scriptURL =
-  //       "https://script.google.com/macros/s/AKfycbzVdHfU19FAx3RvjKlGAuYjn_rj1adI1S6YPrvk4WdVfEIxDUg7RIjNF2yt2d_lgL2iQw/exec";
-
-  //     const formData = new FormData();
-  //     formData.append("name", data.name);
-  //     formData.append("email", data.email);
-  //     formData.append("subject", data.subject);
-  //     formData.append("message", data.message);
-  //     console.log("formData...", formData);
-
-  //     const res = await fetch(scriptURL, {
-  //       method: "POST",
-  //       body: data,
-  //     });
-  //     console.log("res....",res);
-
-  //     if (!res.ok) {
-  //       throw new Error("Failed to submit form");
-  //     }
-
-  //     return await res.text();
-  //   }
+  }  
 
   async function submitToGoogleSheet(data) {
     console.log("data received:", data);
