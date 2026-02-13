@@ -1,10 +1,14 @@
 // Portfolio Website JavaScript
+// script.js
+// import portfolioConfig from "./config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+  const name = portfolioConfig.personal.name;
+  console.log("Config loaded:", portfolioConfig.personal.name);
   // =============== TYPING EFFECT ===============
   const typedTextSpan = document.getElementById("typed-text");
   const textArray = [
-    "Balvant Kushwaha",
+    name,
     "a Full Stack Developer",
     "a Problem Solver",
   ];
@@ -387,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-  }  
+  }
 
   async function submitToGoogleSheet(data) {
     console.log("data received:", data);
@@ -410,7 +414,7 @@ document.addEventListener("DOMContentLoaded", function () {
       method: "POST",
       body: formData, // ✅ CORRECT
     });
-    console.log("respose ....",res)
+    console.log("respose ....", res);
 
     if (!res.ok) {
       throw new Error("Failed to submit form");
@@ -540,6 +544,66 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // =============== CONFIGURATION DATA ===============
+
+  console.log("JS Loaded");
+
+  document.querySelector(".developer-title").innerText =
+    portfolioConfig.personal.role;
+
+ 
+  document.querySelector(".hero-description").innerText =
+    portfolioConfig.personal.tagline;
+
+  document.querySelector(".contact-me-btn").href =
+    portfolioConfig.personal.whatsappLink;
+
+  // Set profile image and logo
+
+  document.querySelector(".profile-img").src =
+    portfolioConfig.personal.profileImage;
+
+  document.querySelector(".logo img").src = portfolioConfig.personal.logo;
+
+  //  stats number
+  statNumbers[0].setAttribute("data-count", portfolioConfig.stats.experience);
+  statNumbers[1].setAttribute("data-count", portfolioConfig.stats.projects);
+  statNumbers[2].setAttribute("data-count", portfolioConfig.stats.dedication);
+
+  // project
+
+  const projectsGrid = document.querySelector(".projects-grid");
+
+  projectsGrid.innerHTML = portfolioConfig.projects
+    .map(
+      (project) => `
+    <div class="project-card">
+      <div class="project-image">
+        <img src="${project.image}" alt="${project.title}">
+        <div class="project-badge">${project.type}</div>
+        <div class="project-links">
+          <a href="${project.liveLink}" target="_blank" class="live-link">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+          </a>
+        </div>
+      </div>
+      <div class="project-info">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="tech-stack">
+          ${project.tech.map((t) => `<span>${t}</span>`).join("")}
+        </div>
+      </div>
+    </div>
+  `,
+    )
+    .join("");
+
+  // contact info
+
+  document.querySelector(".contact-info p").innerText =
+    portfolioConfig.contact.email;
 });
 
 // =============== ADDITIONAL CSS FOR JS FEATURES ===============
