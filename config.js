@@ -2,7 +2,7 @@
 
 var portfolioConfig = {
   personal: {
-    name: "Haresh Kushwaha",
+    name: "Balvant Kushwaha",
     role: "MERN HHFull Stack Developer",
     tagline: "Building scalable, clean, and modern web applications with passion.",
     profileImage: "./images/profileImage.jpeg",
@@ -11,25 +11,6 @@ var portfolioConfig = {
       "https://drive.google.com/file/d/1ljow-vQeAgEhJcfg4fxs19pUB3hdS9Lf/view",
     whatsappLink: "https://wa.link/gix1ap"
   },
-
-  stats: {
-    experience: "1+",
-    projects: "10+",
-    dedication: "100%"
-  }, 
-
-  skills: [
-    "MongoDB",
-    "Express",
-    "React",
-    "Node.js",
-    "JavaScript",
-    "HTML5",
-    "CSS3",
-    "Tailwind",
-    "Git",
-    "SQL"
-  ],
 
   projects: [
     {

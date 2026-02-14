@@ -555,6 +555,8 @@ document.addEventListener("DOMContentLoaded", function () {
  
   document.querySelector(".hero-description").innerText =
     portfolioConfig.personal.tagline;
+  
+
 
   document.querySelector(".contact-me-btn").href =
     portfolioConfig.personal.whatsappLink;
@@ -563,13 +565,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelector(".profile-img").src =
     portfolioConfig.personal.profileImage;
+  
+  document.querySelector(".profile-img").alt =
+    portfolioConfig.personal.name;
 
   document.querySelector(".logo img").src = portfolioConfig.personal.logo;
+  document.querySelector(".logo img").alt = portfolioConfig.personal.name + " Logo";
 
-  //  stats number
-  statNumbers[0].setAttribute("data-count", portfolioConfig.stats.experience);
-  statNumbers[1].setAttribute("data-count", portfolioConfig.stats.projects);
-  statNumbers[2].setAttribute("data-count", portfolioConfig.stats.dedication);
+  document.querySelector(".nav-link.mobile-cv").href = portfolioConfig.personal.resumeLink;
+  document.querySelector(".btn-secondary.contact-me-btn").href = portfolioConfig.personal.whatsappLink;
+
 
   // project
 
@@ -602,8 +607,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // contact info
 
-  document.querySelector(".contact-info p").innerText =
+  document.querySelector(".contact-info .email").innerText =
     portfolioConfig.contact.email;
+  
+  document.querySelector(".contact-info .phone").innerText =
+    portfolioConfig.contact.phone;
+  
+  document.querySelector(".contact-info .location").innerText =
+    portfolioConfig.contact.location;
+ document.querySelector(".social-links-compact .fa-linkedin").parentElement.href =   
+    portfolioConfig.contact.linkedin;
+
+  document.querySelector(".social-links-compact .fa-github").parentElement.href = 
+    portfolioConfig.contact.github;
+
+  document.querySelector(".social-links-compact .fa-whatsapp").parentElement.href = 
+    portfolioConfig.contact.whatsapp;
+
+
+    // footer info 
+
+   document.querySelector(".footer .creator").innerText =
+    portfolioConfig.footer.credit;
+
+   document.querySelector(".footer .visit").innerText =
+    portfolioConfig.footer.message;
 });
 
 // =============== ADDITIONAL CSS FOR JS FEATURES ===============
