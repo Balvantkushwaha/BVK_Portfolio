@@ -3,7 +3,7 @@
 var portfolioConfig = {
   personal: {
     name: "Balvant Kushwaha",
-    role: "MERN HHFull Stack Developer",
+    role: "MERN Full Stack Developer",
     tagline: "Building scalable, clean, and modern web applications with passion.",
     profileImage: "./images/profileImage.jpeg",
     logo: "./images/BVKlogo.png",
